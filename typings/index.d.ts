@@ -19,5 +19,13 @@ declare function createVerticalStrength(_buffer: number): StrengthFunction;
 declare const defaultHorizontalStrength: StrengthFunction;
 declare const defaultVerticalStrength: StrengthFunction;
 
-declare function createScrollingComponent<Props>(Component: ComponentType<Props> ): ComponentType<Props>;
+interface IScrollingInjectedProps {
+    onScrollChange?: (left: number, top: number) => void,
+    verticalStrength?: StrengthFunction;
+    horizontalStrength?: StrengthFunction;
+    strengthMultiplier?: number;
+    getScrollContainer?: (element: HTMLElement) => HTMLElement;
+}
+
+declare function createScrollingComponent<Props>(Component: ComponentType<Props> ): ComponentType<Props & IScrollingInjectedProps>;
 export default createScrollingComponent;
